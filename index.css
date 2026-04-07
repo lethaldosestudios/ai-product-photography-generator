@@ -1,0 +1,4 @@
+/* Tailwind base styles — loaded via CDN script tag in index.html */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
