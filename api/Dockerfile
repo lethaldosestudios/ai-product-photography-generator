@@ -3,5 +3,6 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install --omit=dev
 COPY server.js .
-EXPOSE ${PORT:-8080}
+# PORT is injected by Railway at runtime; 8080 is the default
+EXPOSE 8080
 CMD ["node", "server.js"]

@@ -5,12 +5,15 @@ import { GoogleGenAI, Modality } from '@google/genai';
 
 const app = express();
 const upload = multer({ storage: multer.memoryStorage() });
-const PORT = process.env.PORT || 3001;
+
+// Railway always injects PORT; fallback to 8080 to match Dockerfile EXPOSE
+const PORT = process.env.PORT || 8080;
 
 // CORS configuration
 app.use(cors({
   origin: process.env.FRONTEND_URL || '*',
-  methods: ['POST'],
+  // GET is required for /health endpoint; POST for /api/generate
+  methods: ['GET', 'POST'],
 }));
 
 // Validate API key on startup
@@ -46,8 +49,9 @@ app.post('/api/generate', upload.single('image'), async (req, res) => {
     const mimeType = file.mimetype;
 
     // Call Gemini API
+    // Using gemini-2.0-flash-exp for image generation (supports Modality.IMAGE output)
     const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash-image-preview',
+      model: 'gemini-2.0-flash-exp',
       contents: {
         parts: [
           {
