@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://ai-product-photography-generator-production.up.railway.app';
 
 export interface GenerateImageResponse {
   success: boolean;
