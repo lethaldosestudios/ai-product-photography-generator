@@ -5,12 +5,12 @@ import { GoogleGenAI, Modality } from '@google/genai';
 
 const app = express();
 const upload = multer({ storage: multer.memoryStorage() });
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8080;
 
 // CORS configuration
 app.use(cors({
   origin: process.env.FRONTEND_URL || '*',
-  methods: ['POST'],
+  methods: ['GET', 'POST'],
 }));
 
 // Validate API key on startup
@@ -47,7 +47,7 @@ app.post('/api/generate', upload.single('image'), async (req, res) => {
 
     // Call Gemini API
     const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash-image-preview',
+      model: 'gemini-2.0-flash-preview-image-generation',
       contents: {
         parts: [
           {
