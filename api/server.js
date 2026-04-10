@@ -47,7 +47,7 @@ app.post('/api/generate', upload.single('image'), async (req, res) => {
 
     // Call Gemini API
     const response = await ai.models.generateContent({
-      model: 'gemini-2.0-flash-preview-image-generation',
+      model: 'gemini-3.1-flash-image-preview',
       contents: {
         parts: [
           {
