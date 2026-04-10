@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { Header } from './components/Header';
 import { ImageUploader } from './components/ImageUploader';
 import { ControlPanel } from './components/ControlPanel';
@@ -104,6 +105,7 @@ function App() {
           onDismiss={() => setToast(null)}
         />
       )}
+      <Analytics />
     </div>
   );
 }
